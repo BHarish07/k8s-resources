@@ -15,14 +15,14 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: nginx-service
   labels:
     name: nginx
     app: expense-nginx
     environment: dev
 spec:
   containers:
-    - name: nginx-service
+    - name: nginx
       image: nginx
-      
+
     
