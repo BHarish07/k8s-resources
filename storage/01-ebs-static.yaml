@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: ebs-static  
+  name: ebs-static
 spec:
   accessModes:
   - ReadWriteOnce
@@ -11,7 +11,6 @@ spec:
     driver: ebs.csi.aws.com
     fsType: ext4
     volumeHandle: vol-0666a651740b768a7
-    
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,7 +24,6 @@ spec:
   resources:
     requests:
       storage: 5Gi
-
 ---
 apiVersion: v1
 kind: Pod
@@ -42,12 +40,11 @@ spec:
     - name: persistent-storage
       mountPath: /usr/share/nginx/html
   nodeSelector:
-    topology.kubernets.io/zone: us-east-1c
+    topology.kubernetes.io/zone: us-east-1c
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
       claimName: ebs-static
-
 ---
 apiVersion: v1
 kind: Service
@@ -62,4 +59,3 @@ spec:
   - protocol: TCP
     port: 80 #service-port
     targetPort: 80
-  
