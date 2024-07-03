@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: expense-rs
+  labels:
+    app: expense
+    tier: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: expense
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: expense
+        tier: web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+    
