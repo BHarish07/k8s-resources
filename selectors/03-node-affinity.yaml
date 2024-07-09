@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-2
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: "project"
+            operator: In
+            values:
+            - "expense"        
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: Always
